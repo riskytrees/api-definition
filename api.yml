@@ -1,10 +1,10 @@
 openapi: 3.0.1
 info:
-  title: attack_tree_modeler
-  description: 'API specification for the attack_tree_modeler API service. Note: this API is currently considered unstable and may change at any time.'
+  title: RiskyTrees API
+  description: 'API specification for the RiskyTrees API service. Note: this API is currently considered unstable and may change at any time.'
   contact:
     email: josiah@riskytrees.com
-  version: 0.0.1
+  version: 0.0.2
 externalDocs:
   description: RiskyTrees website
   url: https://riskytrees.com
@@ -285,6 +285,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetNodeResponse'
+  /nodes/{id}/recommend:
+    get:
+      tags:
+      - nodes
+      summary: Recommends a series of children nodes that seem to be relevant to the specified node
+      operationId: recommendNodeChildren
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          description: Got recommended nodes successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecommendNodeChildrenResponse'
 
   /projects/{projectId}/trees/{treeId}:
     get:
@@ -1294,6 +1313,24 @@ components:
         - $ref: '#/components/schemas/ApiResponse'
       type: object
 
+    RecommendNodeChildrenResponse:
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+      type: object
+      properties:
+
+        result:
+          type: object
+          properties:
+            suggestions:
+              type: array
+              items:
+                type: object
+                properties:
+                  title:
+                    type: string
+            operator:
+              type: string
 
     ApiResponse:
       type: object
