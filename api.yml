@@ -285,8 +285,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetNodeResponse'
-  /nodes/{id}/recommend:
-    get:
+  /nodes/recommend:
+    post:
       tags:
       - nodes
       summary: Recommends a series of children nodes that seem to be relevant to the specified node
@@ -297,6 +297,12 @@ paths:
           schema:
             type: integer
           required: true
+      requestBody:
+        description: List of paths
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecommendNodeChildrenPayload'
       responses:
         200:
           description: Got recommended nodes successfully.
@@ -1331,6 +1337,14 @@ components:
                     type: string
             operator:
               type: string
+      
+    RecommendNodeChildrenPayload:
+      type: object
+      properties:
+        steps:
+          type: array
+          items:
+            type: string
 
     ApiResponse:
       type: object
