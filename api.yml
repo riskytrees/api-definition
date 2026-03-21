@@ -285,6 +285,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetNodeResponse'
+  /nodes/{id}/risk:
+    get:
+      tags:
+      - nodes
+      summary: Gets the risk analysis details for a specific node
+      operationId: getNodeRisk
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          description: Got node details successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetNodeRiskResponse'
   /nodes/recommend:
     post:
       tags:
@@ -1030,6 +1049,23 @@ components:
             treeId:
               type: string
               example: "uuid string"
+
+    GetNodeRiskResponse:
+      allOf:
+      - $ref: '#/components/schemas/ApiResponse'
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            computed:
+              type: object
+            interface:
+              type: object
+              properties:
+                primary:
+                  type: string
+
 
     SelectedModel:
       type: object
