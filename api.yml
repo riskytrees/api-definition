@@ -304,7 +304,7 @@ paths:
           required: true
       responses:
         200:
-          description: Got node details successfully.
+          description: Got node risk analysis details successfully.
           content:
             application/json:
               schema:
