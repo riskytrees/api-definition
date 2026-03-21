@@ -4,7 +4,7 @@ info:
   description: 'API specification for the RiskyTrees API service. Note: this API is currently considered unstable and may change at any time.'
   contact:
     email: josiah@riskytrees.com
-  version: 0.0.2
+  version: 0.0.3
 externalDocs:
   description: RiskyTrees website
   url: https://riskytrees.com
