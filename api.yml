@@ -297,6 +297,11 @@ paths:
           schema:
             type: integer
           required: true
+        - in: query
+          name: riskModel
+          schema:
+            type: string
+          required: true
       responses:
         200:
           description: Got node details successfully.
